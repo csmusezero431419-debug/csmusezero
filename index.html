@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CS MUSEZERO</title>
+<style>
+:root{--bg:#f5f7f4;--card:#fff;--ink:#14315c;--muted:#5d6b7c;--line:#d9e0e6;--navy:#14315c;--gold:#f2b705;--green:#1f7a4d;--err:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1826;--card:#14243a;--ink:#e8eef5;--muted:#9fb0c2;--line:#28405a;--navy:#0a1422;--err:#ff8a80}}
+:root[data-theme="dark"]{--bg:#0d1826;--card:#14243a;--ink:#e8eef5;--muted:#9fb0c2;--line:#28405a;--navy:#0a1422;--err:#ff8a80}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.5}
+h1,h2,h3,button,input,select,th,nav,label{font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif}
+button{cursor:pointer;font-size:1rem}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.hide{display:none!important}
+.btn{border:0;border-radius:8px;padding:10px 18px;font-weight:700;background:var(--gold);color:#14315c}
+.btn.alt{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn.sm{padding:5px 10px;font-size:.85rem}
+.btn.red{background:var(--err);color:#fff}
+/* Public site */
+.top{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 5vw;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.1rem;font-family:"Trebuchet MS",sans-serif}
+.mark{width:38px;height:38px;border-radius:10px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900}
+.hero{background:var(--navy);color:#fff;padding:9vh 5vw 11vh;text-align:center;border-bottom:8px solid var(--green)}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);margin:0 0 10px}
+.hero p{max-width:34em;margin:0 auto 24px;color:#d5dfea}
+.sec{padding:48px 5vw;max-width:1100px;margin:auto}
+.sec h2{margin-top:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.tile{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--green);border-radius:10px;padding:16px}
+.tile h3{margin:0 0 4px}.tile p{margin:0;color:var(--muted);font-size:.95rem}
+footer{text-align:center;color:var(--muted);padding:28px 5vw;border-top:1px solid var(--line)}
+/* MIS */
+#mis{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside{background:var(--navy);color:#fff;padding:16px 10px}
+aside .brand{padding:6px 8px 16px}
+aside nav button{display:flex;justify-content:space-between;width:100%;text-align:left;background:none;border:0;color:#cfd9e5;padding:10px;border-radius:8px;margin-bottom:2px}
+aside nav button[aria-current="true"]{background:var(--green);color:#fff;font-weight:700}
+main{padding:20px 4vw;min-width:0}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+.bar h2{margin:0}
+.bar input{padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);min-width:200px}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.stat b{display:block;font-size:1.9rem;color:var(--green);font-family:"Trebuchet MS",sans-serif}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:.93rem}
+th{background:var(--bg);color:var(--muted)}
+td.act{white-space:nowrap;text-align:right}
+.empty{padding:22px;color:var(--muted)}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);width:min(420px,92vw);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog label{display:block;font-weight:700;font-size:.88rem;margin:10px 0 4px}
+dialog input,dialog select{width:100%;padding:9px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.dact{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.menu{display:none}
+@media(max-width:760px){
+ #mis{grid-template-columns:1fr}
+ aside{position:sticky;top:0;z-index:4;padding:8px}
+ aside nav{display:flex;overflow-x:auto;gap:4px}
+ aside nav button{width:auto;white-space:nowrap}
+ aside .brand{padding-bottom:8px}
+}
+</style>
+</head>
+<body>
+
+<div id="site">
+  <header class="top">
+    <div class="brand"><span class="mark">CS</span> CS MUSEZERO</div>
+    <button class="btn" id="openMis">Open school system</button>
+  </header>
+  <section class="hero">
+    <h1>CS MUSEZERO</h1>
+    <p>A school community where students learn, teachers guide, and parents stay informed. Everything about our school in one place.</p>
+    <button class="btn" onclick="openMis()">Go to management system</button>
+  </section>
+  <section class="sec">
+    <h2>Our school system</h2>
+    <div class="grid">
+      <div class="tile"><h3>Students</h3><p>Enrolment, classes and guardian contacts.</p></div>
+      <div class="tile"><h3>Teachers</h3><p>Subjects, assignments and contact details.</p></div>
+      <div class="tile"><h3>Library</h3><p>Book catalogue, copies and borrowing.</p></div>
+      <div class="tile"><h3>Supporting staff</h3><p>Administration, security, kitchen and more.</p></div>
+      <div class="tile"><h3>Classrooms</h3><p>Rooms, capacity and class teachers.</p></div>
+      <div class="tile"><h3>Parents</h3><p>Guardian records linked to their children.</p></div>
+    </div>
+  </section>
+  <footer>&copy; CS MUSEZERO. All rights reserved.</footer>
+</div>
+
+<div id="mis" class="hide">
+  <aside>
+    <div class="brand"><span class="mark">CS</span> MUSEZERO MIS</div>
+    <nav id="nav"></nav>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<dialog id="dlg"><form method="dialog" id="dform"></form></dialog>
+
+<script>
+const MODS = {
+  dashboard:{title:'Dashboard'},
+  students:{title:'Students',fields:[['name','Full name'],['cls','Class'],['gender','Gender','select',['Female','Male']],['guardian','Parent / guardian'],['phone','Phone']]},
+  teachers:{title:'Teachers',fields:[['name','Full name'],['subject','Subject'],['phone','Phone'],['email','Email']]},
+  library:{title:'Library',fields:[['title','Book title'],['author','Author'],['copies','Copies','number'],['borrower','Borrowed by']]},
+  staff:{title:'Supporting staff',fields:[['name','Full name'],['role','Role'],['phone','Phone']]},
+  classrooms:{title:'Classrooms',fields:[['room','Room name'],['capacity','Capacity','number'],['teacher','Class teacher'],['cls','Class']]},
+  parents:{title:'Parents',fields:[['name','Full name'],['child','Child'],['phone','Phone'],['email','Email']]}
+};
+const SEED = {
+  students:[{name:'Aline Uwase',cls:'S1A',gender:'Female',guardian:'Jean Uwase',phone:'0788000001'},{name:'Eric Habimana',cls:'S2B',gender:'Male',guardian:'Marie Habimana',phone:'0788000002'}],
+  teachers:[{name:'Claudine Mukamana',subject:'Mathematics',phone:'0788000010',email:'claudine@example.com'}],
+  library:[{title:'Things Fall Apart',author:'Chinua Achebe',copies:5,borrower:''}],
+  staff:[{name:'Paul Nkurunziza',role:'Security',phone:'0788000020'}],
+  classrooms:[{room:'Room 1',capacity:40,teacher:'Claudine Mukamana',cls:'S1A'}],
+  parents:[{name:'Jean Uwase',child:'Aline Uwase',phone:'0788000030',email:'jean@example.com'}]
+};
+let db, cur = 'dashboard', q = '';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+try { db = JSON.parse(localStorage.getItem('musezero-db')); } catch(e) {}
+if (!db) db = JSON.parse(JSON.stringify(SEED));
+const save = () => { try { localStorage.setItem('musezero-db', JSON.stringify(db)); } catch(e) {} };
+
+function openMis(){ $('site').classList.add('hide'); $('mis').classList.remove('hide'); go('dashboard'); window.scrollTo(0,0); }
+$('openMis').onclick = openMis;
+
+function nav(){
+  $('nav').innerHTML = Object.keys(MODS).map(k =>
+    `<button data-k="${k}" ${k===cur?'aria-current="true"':''}>${MODS[k].title}${k!=='dashboard'?`<span>${db[k].length}</span>`:''}</button>`).join('')
+    + `<button data-k="_site">← Public website</button>`;
+  $('nav').querySelectorAll('button').forEach(b => b.onclick = () => {
+    if (b.dataset.k === '_site') { $('mis').classList.add('hide'); $('site').classList.remove('hide'); }
+    else go(b.dataset.k);
+  });
+}
+function go(k){ cur = k; q = ''; render(); }
+
+function render(){
+  nav();
+  const m = MODS[cur], main = $('main');
+  if (cur === 'dashboard'){
+    main.innerHTML = `<div class="bar"><h2>Dashboard</h2></div><div class="cards">` +
+      Object.keys(db).map(k => `<div class="stat"><b>${db[k].length}</b>${MODS[k].title}</div>`).join('') +
+      `</div><p>Welcome to the CS MUSEZERO management system. Choose a section on the left to add, edit or remove records.</p>`;
+    return;
+  }
+  const rows = db[cur].map((r,i)=>({r,i})).filter(({r}) => !q || JSON.stringify(r).toLowerCase().includes(q.toLowerCase()));
+  main.innerHTML = `<div class="bar"><h2>${m.title}</h2><div>
+      <input id="search" type="search" placeholder="Search ${m.title.toLowerCase()}" value="${esc(q)}" aria-label="Search">
+      <button class="btn" id="add">Add new</button></div></div>
+    <div class="tw">${rows.length ? `<table><thead><tr>${m.fields.map(f=>`<th>${f[1]}</th>`).join('')}<th></th></tr></thead><tbody>` +
+    rows.map(({r,i}) => `<tr>${m.fields.map(f=>`<td>${esc(r[f[0]])}</td>`).join('')}<td class="act">
+      <button class="btn alt sm" data-e="${i}">Edit</button> <button class="btn red sm" data-d="${i}">Delete</button></td></tr>`).join('') +
+    `</tbody></table>` : `<div class="empty">No records found. Select “Add new” to create the first one.</div>`}</div>`;
+  $('search').oninput = e => { q = e.target.value; const p = e.target.selectionStart; render(); const s = $('search'); s.focus(); s.setSelectionRange(p,p); };
+  $('add').onclick = () => form(-1);
+  main.querySelectorAll('[data-e]').forEach(b => b.onclick = () => form(+b.dataset.e));
+  main.querySelectorAll('[data-d]').forEach(b => b.onclick = () => {
+    if (confirm('Delete this record?')) { db[cur].splice(+b.dataset.d,1); save(); render(); }
+  });
+}
+
+function form(i){
+  const m = MODS[cur], rec = i >= 0 ? db[cur][i] : {};
+  $('dform').innerHTML = `<h3>${i>=0?'Edit':'Add'} ${m.title.toLowerCase()} record</h3>` + m.fields.map(([k,l,t,opts]) =>
+    `<label for="f_${k}">${l}</label>` + (t==='select'
+      ? `<select id="f_${k}">${opts.map(o=>`<option ${rec[k]===o?'selected':''}>${o}</option>`).join('')}</select>`
+      : `<input id="f_${k}" type="${t==='number'?'number':'text'}" value="${esc(rec[k])}">`)).join('') +
+    `<div class="dact"><button type="button" class="btn alt" id="cancel">Cancel</button><button type="submit" class="btn">Save changes</button></div>`;
+  $('cancel').onclick = () => $('dlg').close();
+  $('dform').onsubmit = e => {
+    e.preventDefault();
+    const out = {};
+    m.fields.forEach(([k,,t]) => out[k] = t==='number' ? Number($('f_'+k).value||0) : $('f_'+k).value.trim());
+    if (!Object.values(out).some(v => v)) return;
+    i >= 0 ? db[cur][i] = out : db[cur].push(out);
+    save(); $('dlg').close(); render();
+  };
+  $('dlg').showModal();
+}
+</script>
+</body>
+</html>
